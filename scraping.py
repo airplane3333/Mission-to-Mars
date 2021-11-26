@@ -11,7 +11,7 @@ def scrape_all():
     #initiate the headless driver for deployment
     #executable_path and browser path
     executable_path = {'executable_path': ChromeDriverManager().install()}
-    browser = Browser('chrome', **executable_path, headless=False)
+    browser = Browser('chrome', **executable_path, headless=True)
     news_title, news_paragraph = mars_news(browser)
     #url_image, title = hemi(browser)
     hemisphere_image_urls = hemi(browser)
@@ -86,7 +86,7 @@ def mars_facts():
         return None
     df.columns=['description', 'Mars', 'Earth']
     df.set_index('description', inplace=True)
-    return df.to_html(classes="table table-striped")
+    return df.to_html(classes="table table-hover")
     
 
 def hemi(browser):

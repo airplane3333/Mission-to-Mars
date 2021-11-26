@@ -11,17 +11,18 @@
     />
   </head>
   <body>
-    <div class="container">
+    <div class="container-fluid">
       <!-- Add Jumbotron to Header -->
       <div class="jumbotron text-center">
         <h1>Mission to Mars</h1>
+        <p>Click here to gather the latest data</p>
         <!-- Add a button to activate scraping script -->
-        <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+        <p><a class="btn btn-info btn-lg bg-warning" href="/scrape" role="button">New Data</a></p>
       </div>
 
       <!-- Add section for Mars News -->
       <div class="row" id="mars-news">
-        <div class="col-md-12">
+        <div class="col-md-10">
           <div class="media">
             <div class="media-body">
               <h2>Latest Mars News</h2>
@@ -48,8 +49,10 @@
         <div class="col-md-4">
           <!-- Mars Facts -->
           <div class="row" id="mars-facts">
-            <h4>Mars Facts</h4>
-            {{ mars.facts | safe }}
+            <h4><center>Mars Facts</center></h4>
+            <div class="table table-hover">
+              {{ mars.facts | safe }}
+            </div>
           </div>
         </div>
       </div>
@@ -59,18 +62,17 @@
         <div class="page-header">
           <h2 class="text-center">Mars Hemispheres</h2>
         </div>
-
-        {% for hemisphere in mars.url_hemi %}
-        <div class="col-md-6">
+         {% for hemisphere in mars.url_hemi %}
+        <div class="col-md-12">
           <div class="thumbnail">
-            <img src="{{hemisphere.url_image | default('static/images/error.png', true)}}" alt="This isn't working...">
-            <div class="caption">
+            <img src="{{hemisphere.url_image | default('static/images/error.png', true)}}" alt="....">
+            <div class="text-center">
               <h3>{{hemisphere.title}}</h3>
             </div>
           </div>
         </div>
         {% endfor %}
-      </div>
+       </div>
     </div>
   </body>
 </html>
